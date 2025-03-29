@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: hsl(0, 0%, 100%);
+            flex-direction: column;
+        }
+        .container {
+            display: flex;
+            width: 80%;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .image {
+            width: 20%;
+            text-align: center;
+        }
+        .alphabet {
+            width: 60%;
+            display: flex;
+            justify-content: space-between; /* This will create the three columns */
+        }
+        .alphabet-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%; /* 3 columns, each taking up 30% of the container */
+        }
+        .alphabet ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .alphabet li {
+            margin: 5px 0;
+            cursor: pointer;
+        }
+
+        .clicked-letters {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .clicked-letters span {
+            margin: 5px;
+            font-size: 20px;
+            padding: 5px;
+            background-color: #ffffff;
+            border-radius: 3px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="image">
+        <img src="Images/IMG_6556.png" alt="Left Image">
+    </div>
+
+    <div class="alphabet">
+        <!-- Alphabet Column 1 -->
+        <div class="alphabet-column">
+            <ul>
+                <li onclick="playAudio('A')">A</li>
+                <li onclick="playAudio('À')">À</li>
+                <li onclick="playAudio('Á')">Á</li>
+                <li onclick="playAudio('Â')">Â</li>
+                <li onclick="playAudio('Ã')">Ã</li>
+                <li onclick="playAudio('Ä')">Ä</li>
+                <li onclick="playAudio('Å')">Å</li>
+
+                <li onclick="playAudio('E')">E</li>
+                <li onclick="playAudio('É')">É</li>
+                <li onclick="playAudio('È')">È</li>
+                <li onclick="playAudio('Ê')">Ê</li>
+                <li onclick="playAudio('Ë')">Ë</li>
+
+                <li onclick="playAudio('I')">I</li>
+                <li onclick="playAudio('Ì')">Ì</li>
+                <li onclick="playAudio('Í')">Í</li>
+                <li onclick="playAudio('Î')">Î</li>
+                <li onclick="playAudio('Ĩ')">Ĩ</li>
+                <li onclick="playAudio('Ï')">Ï</li>
+            </ul>
+        </div>
+
+        <!-- Alphabet Column 2 -->
+        <div class="alphabet-column">
+            <ul>
+                <li onclick="playAudio('O')">O</li>
+                <li onclick="playAudio('Ò')">Ò</li>
+                <li onclick="playAudio('Ó')">Ó</li>
+                <li onclick="playAudio('Ô')">Ô</li>
+                <li onclick="playAudio('Õ')">Õ</li>
+                <li onclick="playAudio('Ö')">Ö</li>
+
+                <li onclick="playAudio('U')">U</li>
+                <li onclick="playAudio('Ù')">Ù</li>
+                <li onclick="playAudio('Ú')">Ú</li>
+                <li onclick="playAudio('Û')">Û</li>
+                <li onclick="playAudio('Ũ')">Ũ</li>
+                <li onclick="playAudio('Ü')">Ü</li>
+
+                <li onclick="playAudio('Y')">Y</li>
+                <li onclick="playAudio('Ÿ')">Ÿ</li>
+
+                <li onclick="playAudio('B')">B</li>
+
+                <li onclick="playAudio('C')">C</li>
+                <li onclick="playAudio('Ç')">Ç</li>
+            </ul>
+        </div>
+
+        <!-- Alphabet Column 3 -->
+        <div class="alphabet-column">
+            <ul>
+                <li onclick="playAudio('D')">D</li>
+                <li onclick="playAudio('F')">F</li>
+                <li onclick="playAudio('G')">G</li>
+                <li onclick="playAudio('H')">H</li>
+                <li onclick="playAudio('J')">J</li>
+                <li onclick="playAudio('K')">K</li>
+                <li onclick="playAudio('L')">L</li>
+                <li onclick="playAudio('M')">M</li>
+                <li onclick="playAudio('N')">N</li>
+                <li onclick="playAudio('P')">P</li>
+                <li onclick="playAudio('Q')">Q</li>
+                <li onclick="playAudio('R')">R</li>
+                <li onclick="playAudio('S')">S</li>
+                <li onclick="playAudio('T')">T</li>
+                <li onclick="playAudio('V')">V</li>
+                <li onclick="playAudio('W')">W</li>
+                <li onclick="playAudio('X')">X</li>
+                <li onclick="playAudio('Z')">Z</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="image">
+        <img src="Images/IMG_6558.png" alt="Right Image">
+    </div>
+</div>
+
+<!-- Display clicked letters -->
+<div class="clicked-letters" id="clickedLettersDisplay">
+    <!-- Clicked letters will appear here -->
+</div>
+
+<!-- Button to play clicked letters in sequence -->
+<div class="button-container">
+    <button onclick="playSequence()">Play Sequence</button>
+</div>
+
+<!-- Audio files -->
+    <!-- A -->
+<audio id="audio-A" src="Recordings/A/A.m4a"></audio>
+<audio id="audio-À" src="Recordings/A/Aacent1.m4a"></audio>
+<audio id="audio-Á" src="Recordings/A/Aacent2.m4a"></audio>
+<audio id="audio-Â" src="Recordings/A/Aacent3.m4a"></audio>
+<audio id="audio-Ã" src="Recordings/A/Aacent4.m4a"></audio>
+   
+<!-- E -->
+<audio id="audio-E" src="Recordings/E/E.m4a"></audio>
+<audio id="audio-É" src="Recordings/E/É.m4a"></audio>
+<audio id="audio-È" src="Recordings/E/È.m4a"></audio>
+<audio id="audio-Ê" src="Recordings/E/Ê.m4a"></audio>
+<audio id="audio-Ë" src="Recordings/E/Ë.m4a"></audio>
+   
+<!-- I-->
+<audio id="audio-I" src="Recordings/I/I.m4a"></audio>
+<audio id="audio-Ì" src="Recordings/I/Ì.m4a"></audio>
+<audio id="audio-Í" src="Recordings/I/Í.m4a"></audio>
+<audio id="audio-Î" src="Recordings/I/Í.m4a"></audio>
+<audio id="audio-Ĩ" src="Recordings/I/Ī.m4a"></audio>
+<audio id="audio-Ï" src="Recordings/I/Ï.m4a"></audio>
+    
+<!-- O -->
+<audio id="audio-O" src="Recordings/O/O.m4a"></audio>
+<audio id="audio-Ò" src="Recordings/O/Ò.m4a"></audio>
+<audio id="audio-Ó" src="Recordings/O/Ó.m4a"></audio>
+<audio id="audio-Ô" src="Recordings/O/Ô.m4a"></audio>
+<audio id="audio-Õ" src="Recordings/O/Õ.m4a"></audio>
+<audio id="audio-Ö" src="Recordings/O/Ö.m4a"></audio>
+
+<!-- U -->
+<audio id="audio-U" src="Recordings/U/U.m4a"></audio>
+<audio id="audio-Ù" src="Recordings/U/Ù.m4a"></audio>
+<audio id="audio-Ú" src="Recordings/U/Ú.m4a"></audio>
+<audio id="audio-Û" src="Recordings/U/Û.m4a"></audio>
+<audio id="audio-Ũ" src="Recordings/U/Û.m4a"></audio>
+<audio id="audio-Ü" src="Recordings/U/Ü.m4a"></audio>
+
+<!-- Y -->
+<audio id="audio-Y" src="Recordings/Y/Y.m4a"></audio>
+<audio id="audio-Ÿ" src="Recordings/Y/Y trema.m4a"></audio>
+
+
+
+<audio id="audio-B" src="Recordings/B.m4a"></audio>
+<audio id="audio-C" src="Recordings/C/C.m4a"></audio>
+<audio id="audio-Ç" src="Recordings/C/Ç.m4a"></audio>
+
+
+
+
+<audio id="audio-D" src="Recordings/D.m4a"></audio>
+<audio id="audio-F" src="Recordings/F.m4a"></audio>
+<audio id="audio-G" src="Recordings/G.m4a"></audio>
+<audio id="audio-H" src="Recordings/H.m4a"></audio>
+<audio id="audio-J" src="Recordings/J.m4a"></audio>
+<audio id="audio-K" src="Recordings/K.m4a"></audio>
+<audio id="audio-L" src="Recordings/L.m4a"></audio>
+<audio id="audio-M" src="Recordings/M.m4a"></audio>
+<audio id="audio-N" src="Recordings/N.m4a"></audio>
+<audio id="audio-P" src="Recordings/P.m4a"></audio>
+<audio id="audio-Q" src="Recordings/Q.m4a"></audio>
+<audio id="audio-R" src="Recordings/R.m4a"></audio>
+<audio id="audio-S" src="Recordings/S.m4a"></audio>
+<audio id="audio-T" src="Recordings/T.m4a"></audio>
+<audio id="audio-V" src="Recordings/V.m4a"></audio>
+<audio id="audio-X" src="Recordings/X.m4a"></audio>
+<audio id="audio-W" src="Recordings/W.m4a"></audio>
+<audio id="audio-Z" src="Recordings/Z.m4a"></audio>
+
+
+
+
+<script>
+    let clickedLetters = [];
+
+    function playAudio(letter) {
+        clickedLetters.push(letter);
+        updateClickedLettersDisplay();
+        const audio = document.getElementById(`audio-${letter}`);
+        if (audio) {
+            audio.play();
+        }
+    }
+
+    function updateClickedLettersDisplay() {
+        const display = document.getElementById('clickedLettersDisplay');
+        display.innerHTML = '';
+        clickedLetters.forEach(letter => {
+            const letterSpan = document.createElement('span');
+            letterSpan.textContent = letter;
+            display.appendChild(letterSpan);
+        });
+    }
+
+    function playSequence() {
+        if (clickedLetters.length === 0) {
+            alert('No letters have been clicked!');
+            return;
+        }
+        let index = 0;
+        const interval = setInterval(() => {
+            const letter = clickedLetters[index];
+            const audio = document.getElementById(`audio-${letter}`);
+            if (audio) {
+                audio.playbackRate = 1.5;
+                audio.play();
+            }
+            index++;
+            if (index >= clickedLetters.length) {
+                clearInterval(interval);
+            }
+        }, 100); // delay between each letter
+    }
+</script>
+
+</body>
+</html>

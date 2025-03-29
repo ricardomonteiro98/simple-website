@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Alphabet Combinations</title>
+    <style>
+        body {
+          
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #combinations {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="combinations">Loading...</div>
+
+    <script>
+        const alphabet = 'ABCDEFGHIJKLMNOP'; // Letters A to P
+        const combinationLength = 16; // Combination length (16 letters)
+
+        // Function to generate a random combination
+        function generateRandomCombination() {
+            let combination = '';
+            for (let i = 0; i < combinationLength; i++) {
+                const randomIndex = Math.floor(Math.random() * alphabet.length);
+                combination += alphabet[randomIndex];
+            }
+            return combination;
+        }
+
+        // Function to display combinations sequentially
+        function showCombinations() {
+            const displayDiv = document.getElementById("combinations");
+            
+            let index = 0;
+            
+            // Continuously display a new random combination with a slight delay
+            const interval = setInterval(() => {
+                displayDiv.innerText = generateRandomCombination();
+                index++;
+            }, 500); // 500ms delay between each new combination
+
+            // Optional: Stop after displaying a certain number of combinations (e.g., 100 combinations)
+            setTimeout(() => {
+                clearInterval(interval); // Stop the interval after 100 combinations
+            }, 50000); // 50 seconds (adjust as needed)
+        }
+
+        // Start displaying random combinations
+        showCombinations();
+    </script>
+</body>
+</html>

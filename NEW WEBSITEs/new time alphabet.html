@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time-Based Alphabet</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            
+        }
+        #timeCombination {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="timeCombination">Loading...</div>
+
+    <script>
+        // Function to convert a number to its corresponding letter (0->A, 1->B, ..., 9->J)
+        function numberToLetter(num) {
+            return String.fromCharCode('A'.charCodeAt(0) + num);
+        }
+
+        // Function to update the time combination based on the current time
+        function updateTimeCombination() {
+            const now = new Date();
+            const hours = now.getHours(); // Current hour (0-23)
+            const minutes = now.getMinutes(); // Current minutes (0-59)
+            const seconds = now.getSeconds(); // Current seconds (0-59)
+
+            // Convert hours, minutes, and seconds to letters
+            const hourLetters = numberToLetter(Math.floor(hours / 10)) + numberToLetter(hours % 10);
+            const minuteLetters = numberToLetter(Math.floor(minutes / 10)) + numberToLetter(minutes % 10);
+            const secondLetters = numberToLetter(Math.floor(seconds / 10)) + numberToLetter(seconds % 10);
+
+            // Combine them into a single string
+            const timeCombination = hourLetters + minuteLetters + secondLetters;
+
+            // Display the combination
+            document.getElementById("timeCombination").innerText = timeCombination;
+        }
+
+        // Update the time every second
+        setInterval(updateTimeCombination, 1000);
+    </script>
+</body>
+</html>

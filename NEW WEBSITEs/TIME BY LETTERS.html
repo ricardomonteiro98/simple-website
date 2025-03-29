@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabet Combinations</title>
+    <style>
+        body {
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            
+        }
+        #combinations {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="combinations">Loading...</div>
+
+    <script>
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Letters A to Z
+        const maxLength = 16; // Max combination length of 16 characters
+
+        // Function to generate the next combination (lexicographically)
+        function* generateCombinations() {
+            let current = Array(maxLength).fill('A'); // Start with "A"
+            
+            while (true) {
+                yield current.join(''); // Yield the current combination
+                // Increment to the next combination
+                for (let i = maxLength - 1; i >= 0; i--) {
+                    if (current[i] === 'Z') {
+                        current[i] = 'A'; // Reset this character and move to the next one
+                    } else {
+                        current[i] = String.fromCharCode(current[i].charCodeAt(0) + 1); // Increment character
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Function to display combinations sequentially
+        function showCombinations() {
+            const displayDiv = document.getElementById("combinations");
+            const combinations = generateCombinations();
+            
+            let index = 0;
+            const interval = setInterval(() => {
+                displayDiv.innerText = combinations.next().value; // Get next combination
+                index++;
+                if (index > Math.pow(26, maxLength)) {
+                    clearInterval(interval); // Stop after displaying all combinations
+                }
+            }, 100); // 100ms delay between combinations
+        }
+
+        // Start displaying combinations sequentially
+        showCombinations();
+    </script>
+</body>
+</html>
